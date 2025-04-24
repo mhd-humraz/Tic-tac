@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 50px auto;
+        }
+        td {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 36px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        td:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Tic-Tac-Toe</h1>
+    <p style="text-align: center;">{{ message }}</p>
+    <table>
+        {% for row in board %}
+        <tr>
+            {% for cell in row %}
+            <td>
+                {% if cell not in ['X', 'O'] %}
+                <form method="post" action="/">
+                    <button type="submit" name="move" value="{{ loop.index + loop.parent.index * 3 }}">{{ cell }}</button>
+                </form>
+                {% else %}
+                {{ cell }}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <div style="text-align: center;">
+        <a href="/reset">Reset Game</a>
+    </div>
+</body>
+</html>
